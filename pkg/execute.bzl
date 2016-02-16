@@ -3,7 +3,7 @@ def _impl(ctx):
   # Create the output executable file with command as its content.
   ctx.file_action(
       output=executable,
-      content=ctx.attr.command,
+      content="cat data.txt",
       executable=True)
 
   return struct(
@@ -22,7 +22,6 @@ execute = rule(
   implementation=_impl,
   executable=True,
   attrs={
-      "command": attr.string(),
       "data": attr.label_list(cfg=DATA_CFG, allow_files=True),
       },
 )
